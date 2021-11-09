@@ -3,6 +3,9 @@ provider "gitlab" {
   token    = var.gitlab_token
 }
 
-resource "gitlab_project" "terraform-project" {
-  name = "terraform"
+module "gitlab_groups" {
+  source             = "./modules/gitlab_groups"
+  gitlab_group_names = var.gitlab_group_names
+  build_number       = var.build_number
+  env                = var.env
 }
